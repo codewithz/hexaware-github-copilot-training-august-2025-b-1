@@ -92,35 +92,66 @@ public class CustomerController {
 
 ---
 
-## ✅ Testing Standards
+# 🧪 Test Structure & Best Practices
 
-- Write unit tests using JUnit and Mockito.
-- Place tests in the `src/test/java` directory mirroring the main package.
-- Use `@SpringBootTest` for integration testing.
-- Cover service logic with unit tests, and controller logic with mock MVC tests.
-- Follow **AAA Pattern (Arrange, Act, Assert)** for test structure.
+## 📁 Test Structure & Naming
+
+- **Location:**  
+  `src/test/java/...` mirroring main package structure.
+
+- **Class Names:**  
+  - `XxxServiceTest`  
+  - `XxxControllerTest`  
+  - `XxxRepositoryTest`
+
+- **Method Names (JUnit 5):**  
+  - `shouldReturnCustomers_whenGetAll()`  
+  - `shouldThrowNotFound_whenCustomerMissing()`  
+  - `shouldRejectInvalidEmail_whenCreateCustomer()`
 
 ---
 
-## 🎯 Prompting Copilot (Zero-Shot, One-Shot)
+## ✅ What to Test per Layer
 
-- **Zero-Shot Prompting**  
-  Example: *"Generate a Spring Boot REST Controller for managing products with basic CRUD APIs."*  
-  Copilot generates code without prior context.
+### Controller (Web)
+- HTTP status codes, response bodies, headers.  
+- Validation failures (`@Valid`, constraint violations).  
+- Error handling via `@ControllerAdvice`.
 
-- **One-Shot Prompting**  
-  Example: Provide one working example (like `CustomerController`) and ask Copilot:  
-  *"Generate a similar REST Controller for Orders with CRUD APIs following the same structure."*  
-  Copilot adapts the style and conventions from the example.
+### Service (Business)
+- Branching logic, orchestration, transaction boundaries.  
+- Interaction with repositories and other services (mocked).  
+
+### Repository (Data)
+- Query methods and custom queries.  
+- Basic CRUD with realistic schema.  
+- Use lightweight DB (**H2**) or **Testcontainers** for realism.
+
+---
+
+## 🧱 Common Patterns
+
+- **AAA:** Arrange → Act → Assert (one assertion group per behavior).  
+- **Test Doubles:** Mockito (`@Mock`, `@InjectMocks`), `when(...).thenReturn(...)`, `verify(...)`.  
+- **Parameterized Tests:** Boundary values, equivalence classes.  
+- **Data Builders:** Create reusable valid domain objects, tweak fields per test.
+
+---
+
+## 🎛️ Coverage & Quality
+
+**Targets:**  
+- Line coverage ≥ **80%**  
+  - Services ≥ **85%**  
+  - Controllers ≥ **80%**  
+- Branch coverage for complex logic.  
+- No assertions on logs or private methods.  
+- Prefer **state & contract assertions** over interaction unless it’s orchestration.
 
 ---
 
 ## 🔒 Security Considerations
 
-- Never hardcode passwords, tokens, or secrets.
-- Externalize configuration using `application.properties` or `application.yml`.
-- Use `@PreAuthorize` and `@Secured` where role-based access is required.
-
----
-
-Happy Coding with GitHub Copilot in Spring Boot! 🚀
+- Never hardcode passwords, tokens, or secrets.  
+- Externalize configuration using `application.properties` or `application.yml`.  
+- Use `@PreAuthorize` and `@Secured` where role-based access is required.  
