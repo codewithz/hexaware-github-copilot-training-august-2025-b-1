@@ -19,6 +19,7 @@ This document provides instructions for GitHub Copilot to follow consistent codi
 
 1. Follow standard Spring Boot layer separation:
    - `controller` for REST APIs
+   - `controller` should be prefixed as /api/hexaware/prod 
    - `service` for business logic
    - `repository` for database access
    - `model` or `entity` for data classes
@@ -97,6 +98,20 @@ public class CustomerController {
 - Place tests in the `src/test/java` directory mirroring the main package.
 - Use `@SpringBootTest` for integration testing.
 - Cover service logic with unit tests, and controller logic with mock MVC tests.
+- Follow **AAA Pattern (Arrange, Act, Assert)** for test structure.
+
+---
+
+## 🎯 Prompting Copilot (Zero-Shot, One-Shot)
+
+- **Zero-Shot Prompting**  
+  Example: *"Generate a Spring Boot REST Controller for managing products with basic CRUD APIs."*  
+  Copilot generates code without prior context.
+
+- **One-Shot Prompting**  
+  Example: Provide one working example (like `CustomerController`) and ask Copilot:  
+  *"Generate a similar REST Controller for Orders with CRUD APIs following the same structure."*  
+  Copilot adapts the style and conventions from the example.
 
 ---
 
