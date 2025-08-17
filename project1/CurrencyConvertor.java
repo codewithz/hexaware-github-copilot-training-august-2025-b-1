@@ -8,6 +8,18 @@
 // Write a simple Java program to convert INR to USD using excahnge rate on 15th August 2025 and use the precision to 3 decimals    
 import java.util.Scanner;
 public class CurrencyConvertor {
+    /**
+     * The main method serves as the entry point for the CurrencyConvertor application.
+     * It prompts the user to enter an amount in Indian Rupees (INR), converts the amount to US Dollars (USD)
+     * using a fixed exchange rate as of 15th August 2025, and displays the converted amount with three decimal places.
+     *
+     * Steps performed:
+     * 1. Reads the amount in INR from user input.
+     * 2. Converts the INR amount to USD using the specified exchange rate.
+     * 3. Prints the converted USD amount with a precision of three decimal places.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
