@@ -132,6 +132,7 @@ public class CustomerController {
 ## 🧱 Common Patterns
 
 - **AAA:** Arrange → Act → Assert (one assertion group per behavior).  
+  > 💡 **Comment for Copilot:** Always use `//Arrange //Act //Assert` in test methods wherever applicable.  
 - **Test Doubles:** Mockito (`@Mock`, `@InjectMocks`), `when(...).thenReturn(...)`, `verify(...)`.  
 - **Parameterized Tests:** Boundary values, equivalence classes.  
 - **Data Builders:** Create reusable valid domain objects, tweak fields per test.
